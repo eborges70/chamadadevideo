@@ -1,184 +1,32 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <title>Área Exclusiva - Vídeo Chamada</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <title>Vídeo Chamada - Pagamento</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    :root {
-      --bg: #f8bbd0;
-      --card: #ffffff;
-      --text: #333333;
-      --primary: #d81b60;
-      --primary-dark: #ad1457;
-      --ok: #2e7d32;
-      --danger: #c62828;
-      --muted: #666666;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      padding: 16px;
-      font-family: Segoe UI, system-ui, -apple-system, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-    }
-    h1 { text-align: center; margin: 12px 0 18px; font-size: 1.8rem; }
-    .grid {
-      max-width: 900px;
-      margin: 0 auto;
-      display: grid;
-      gap: 16px;
-    }
-    .card {
-      background: var(--card);
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      padding: 18px;
-    }
-    .card h2 { margin: 0 0 8px; font-size: 1.3rem; }
-    .row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      border: none;
-      border-radius: 10px;
-      padding: 12px 18px;
-      font-size: 1rem;
-      cursor: pointer;
-      background: var(--primary);
-      color: #fff;
-      transition: background 0.2s ease;
-    }
-    .btn:hover { background: var(--primary-dark); }
-    .btn-ok { background: var(--ok); }
-    .btn-ok:hover { background: #1b5e20; }
-    .btn-danger { background: var(--danger); }
-    .btn-danger:hover { background: #8e1515; }
-    .btn-gray { background: #757575; }
-    .btn-gray:hover { background: #5e5e5e; }
-    .info { color: var(--muted); font-size: 0.95rem; }
-    .field {
-      width: 100%;
-      max-width: 360px;
-      padding: 10px 12px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      font-size: 1rem;
-    }
-    .badge {
-      display: inline-block;
-      background: #f3f3f3;
-      border: 1px dashed #ccc;
-      border-radius: 8px;
-      padding: 8px 12px;
-      font-weight: 600;
-    }
-    .notice {
-      margin-top: 10px;
-      font-weight: 700;
-      color: #b71c1c;
-    }
-    @media (max-width: 520px) {
-      .row { flex-direction: column; align-items: stretch; }
-      .btn { width: 100%; }
-      .field { max-width: 100%; }
-    }
+    body { font-family: Segoe UI, sans-serif; background:#f8bbd0; text-align:center; padding:30px; }
+    .card { background:#fff; padding:20px; border-radius:12px; max-width:400px; margin:auto; box-shadow:0 4px 12px rgba(0,0,0,0.1); }
+    .btn { display:block; margin:10px auto; padding:12px; border:none; border-radius:8px; background:#d81b60; color:#fff; font-size:1em; cursor:pointer; }
+    .btn:hover { background:#ad1457; }
+    .notice { margin-top:15px; font-weight:bold; color:#b71c1c; }
   </style>
 </head>
 <body>
-  <h1>Área Exclusiva 💻✨</h1>
-  <div class="grid">
-
-    <!-- 1) Pagamento via PIX -->
-    <div class="card">
-      <h2>Vídeo Chamada</h2>
-      <p class="badge">Valor: R$ 30,00</p>
-      <p><strong>Chave PIX:</strong> <span id="pixKey">86998083824</span></p>
-      <div class="row">
-        <button class="btn" onclick="copiarPix()">Copiar chave PIX</button>
-        <a class="btn" target="_blank"
-           href="https://wa.me/5586988134323?text=Ol%C3%A1%20gata%2C%20confira%20o%20meu%20comprovante%20PIX%2C%20quero%20receber%20os%20seus%20conte%C3%BAdos.">📩 Enviar comprovante</a>
-      </div>
-      <p class="info">Após realizar o pagamento, envie o comprovante. Você receberá a senha de acesso em seguida.</p>
-      <p class="notice">⏰ Atendimento: 9h às 23h</p>
-    </div>
-
-    <!-- 2) Senha de acesso -->
-    <div class="card">
-      <h2>Senha de acesso</h2>
-      <p class="info">Digite a senha recebida após o envio do comprovante.</p>
-      <div class="row">
-        <input class="field" type="password" id="senhaInput" placeholder="Senha de acesso" />
-        <button class="btn btn-ok" onclick="acessarPorSenha()">Acessar Vídeo Chamada</button>
-        <button class="btn btn-gray" onclick="voltarTopo()">Voltar</button>
-      </div>
-    </div>
-
-    <!-- 3) Simulação de chamada -->
-    <div class="card">
-      <h2>Chamando...</h2>
-      <p class="info">“Você ligou na hora do banho, mas vou fazer uma surpresinha pra você 🤭”</p>
-      <div class="row">
-        <button class="btn btn-danger">❌ Cancelar</button>
-        <button class="btn btn-ok" onclick="iniciarVideo()">✅ Atender</button>
-      </div>
-    </div>
-
+  <div class="card">
+    <h2>Vídeo Chamada</h2>
+    <p>Valor: <strong>R$ 30,00</strong></p>
+    <p>Chave PIX: <strong id="pixKey">86998083824</strong></p>
+    <button class="btn" onclick="copiarPix()">Copiar Chave PIX</button>
+    <a class="btn" href="https://wa.me/5586988134323?text=Enviei%20o%20comprovante" target="_blank">📩 Enviar Comprovante</a>
+    <p>Após o pagamento, você receberá a senha de acesso.</p>
+    <div class="notice">⏰ Atendimento: 9h às 23h</div>
+    <a class="btn" href="pagina2.html">Já enviei o comprovante</a>
   </div>
-
   <script>
-    // CONFIGURAÇÕES
-    const LINK_VIDEO = "https://seu-link-de-video.com/modelo"; // substitua pelo link real
-    const SENHA_CORRETA = "4547"; // exemplo – a senha é de acesso único
-
-    let senhaUsada = false;
-
     function copiarPix() {
-      const key = document.getElementById("pixKey").textContent.trim();
-      navigator.clipboard.writeText(key).then(() => {
-        alert("Chave PIX copiada!");
-      }).catch(() => {
-        alert("Não foi possível copiar. Copie manualmente: " + key);
-      });
-    }
-
-    function dentroDoHorario() {
-      const hora = new Date().getHours();
-      return hora >= 9 && hora < 23;
-    }
-
-    // Botão verde: vai direto para o vídeo (sem senha), pois comprovante já foi enviado
-    function iniciarVideo() {
-      if (!dentroDoHorario()) {
-        alert("⚠️ Chamadas somente entre 9h e 23h.");
-        return;
-      }
-      window.location.href = LINK_VIDEO;
-    }
-
-    // Acesso por senha (revalidação ou alternativa)
-    function acessarPorSenha() {
-      if (!dentroDoHorario()) {
-        alert("⚠️ Chamadas somente entre 9h e 23h.");
-        return;
-      }
-      const senha = document.getElementById("senhaInput").value.trim();
-      if (senha === SENHA_CORRETA && !senhaUsada) {
-        senhaUsada = true;
-        alert("✅ Senha correta! Redirecionando...");
-        window.location.href = LINK_VIDEO;
-      } else if (senhaUsada) {
-        alert("❌ Esta senha já foi utilizada. Solicite uma nova.");
-      } else {
-        alert("❌ Senha inválida. Verifique e tente novamente.");
-      }
-    }
-
-    function voltarTopo() {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      navigator.clipboard.writeText(document.getElementById("pixKey").textContent);
+      alert("Chave PIX copiada!");
     }
   </script>
 </body>

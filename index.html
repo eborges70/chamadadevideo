@@ -14,8 +14,18 @@
       text-align: center;
     }
 
-    h1 { font-size: 1.8em; margin-bottom: 0.5em; }
-    p { font-size: 1.1em; margin-bottom: 1em; max-width: 500px; margin: auto; }
+    h1 {
+      font-size: 1.8em;
+      margin-bottom: 0.5em;
+    }
+
+    p {
+      font-size: 1.1em;
+      margin-bottom: 1em;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
 
     .btn {
       background-color: #d81b60;
@@ -28,32 +38,81 @@
       text-decoration: none;
       margin: 10px 5px;
       transition: background-color 0.3s ease;
-      animation: pulse 1.5s infinite;
       display: inline-block;
     }
-    .btn:hover { background-color: #ad1457; }
 
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.08); }
-      100% { transform: scale(1); }
+    .btn:hover {
+      background-color: #ad1457;
     }
 
-    .pix-box { margin-top: 30px; font-size: 1.1em; font-weight: bold; color: #444; }
-    .confirm-msg { margin-top: 15px; font-size: 1em; color: #222; }
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
 
-    #contador { font-size: 1.5em; margin-top: 20px; display: none; }
-    #btnChamada { display: none; margin-top: 20px; }
-    #senhaBox { display: none; margin-top: 20px; }
+    .pix-box {
+      margin-top: 30px;
+      font-size: 1.1em;
+      font-weight: bold;
+      color: #444;
+    }
 
-    .aviso-horario { margin-top: 25px; font-size: 1.1em; color: #b71c1c; font-weight: bold; }
+    .confirm-msg {
+      margin-top: 15px;
+      font-size: 1em;
+      color: #222;
+    }
+
+    #contador {
+      font-size: 1.3em;
+      margin-top: 20px;
+      display: none;
+    }
+
+    #btnChamada {
+      display: none;
+      margin-top: 20px;
+    }
+
+    #senhaBox {
+      display: none;
+      margin-top: 20px;
+    }
+
+    input {
+      padding: 10px;
+      font-size: 1em;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      width: 80%;
+      max-width: 300px;
+    }
+
+    .aviso-horario {
+      margin-top: 25px;
+      font-size: 1.1em;
+      color: #b71c1c;
+      font-weight: bold;
+    }
+
+    /* Responsividade */
+    @media (max-width: 480px) {
+      h1 { font-size: 1.5em; }
+      p { font-size: 1em; }
+      .btn { width: 100%; max-width: 300px; }
+      .btn-group { flex-direction: column; align-items: center; }
+    }
   </style>
 </head>
 <body>
   <h1>Chamada de Vídeo Exclusiva 💻✨</h1>
   <p>Você escolhe o valor, clique no botão, seja generoso rsrs 😘</p>
 
-  <div>
+  <div class="btn-group">
     <button class="btn">R$ 30,00</button>
     <button class="btn">R$ 50,00</button>
     <button class="btn">R$ 100,00</button>
@@ -79,13 +138,11 @@
 
   <script>
     let senhaUsada = false; // controle de acesso único
-    const senhaCorreta = "4547"; // exemplo de senha, pode ser dinâmica
+    const senhaCorreta = "4547"; // exemplo de senha
 
     function confirmarPagamento() {
-      // abre WhatsApp para envio do comprovante
       window.open("https://wa.me/5586988134323?text=Ol%C3%A1%20gata%2C%20confira%20o%20meu%20comprovante%20PIX%2C%20quero%20receber%20os%20seus%20conte%C3%BAdos.", "_blank");
 
-      // verifica horário atual
       const agora = new Date();
       const hora = agora.getHours();
       if (hora < 9 || hora >= 23) {
@@ -93,7 +150,6 @@
         return;
       }
 
-      // inicia contador regressivo de 60 segundos
       document.getElementById("contador").style.display = "block";
       let tempo = 60;
       document.getElementById("tempo").textContent = tempo;
@@ -116,9 +172,9 @@
     function validarSenha() {
       const senha = document.getElementById("senhaInput").value;
       if (senha === senhaCorreta && !senhaUsada) {
-        senhaUsada = true; // invalida senha após uso
+        senhaUsada = true;
         alert("✅ Senha correta! Redirecionando para a chamada...");
-        window.location.href = "https://seu-link-de-video.com/modelo"; // coloque o link real aqui
+        window.location.href = "https://seu-link-de-video.com/modelo";
       } else {
         alert("❌ Senha inválida ou já utilizada!");
       }

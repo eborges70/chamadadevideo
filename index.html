@@ -7,35 +7,21 @@
   <style>
     body {
       margin: 0;
-      padding: 0;
+      padding: 20px;
       font-family: 'Segoe UI', sans-serif;
       background: linear-gradient(135deg, #fce4ec, #f8bbd0);
       color: #333;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
       text-align: center;
-      padding: 20px;
     }
 
-    h1 {
-      font-size: 2em;
-      margin-bottom: 0.5em;
-    }
-
-    p {
-      font-size: 1.2em;
-      margin-bottom: 1em;
-      max-width: 500px;
-    }
+    h1 { font-size: 1.8em; margin-bottom: 0.5em; }
+    p { font-size: 1.1em; margin-bottom: 1em; max-width: 500px; margin: auto; }
 
     .btn {
       background-color: #d81b60;
       color: white;
-      padding: 15px 30px;
-      font-size: 1.1em;
+      padding: 12px 24px;
+      font-size: 1em;
       border: none;
       border-radius: 8px;
       cursor: pointer;
@@ -45,10 +31,7 @@
       animation: pulse 1.5s infinite;
       display: inline-block;
     }
-
-    .btn:hover {
-      background-color: #ad1457;
-    }
+    .btn:hover { background-color: #ad1457; }
 
     @keyframes pulse {
       0% { transform: scale(1); }
@@ -56,42 +39,67 @@
       100% { transform: scale(1); }
     }
 
-    .pix-box {
-      margin-top: 30px;
-      font-size: 1.1em;
-      font-weight: bold;
-      color: #444;
-    }
+    .pix-box { margin-top: 30px; font-size: 1.1em; font-weight: bold; color: #444; }
+    .confirm-msg { margin-top: 15px; font-size: 1em; color: #222; }
 
-    .confirm-msg {
-      margin-top: 15px;
-      font-size: 1em;
-      color: #222;
-    }
+    #contador { font-size: 1.5em; margin-top: 20px; display: none; }
+    #btnChamada { display: none; margin-top: 20px; }
 
-    .btn-group {
-      margin-top: 20px;
-    }
+    .aviso-horario { margin-top: 25px; font-size: 1.1em; color: #b71c1c; font-weight: bold; }
   </style>
 </head>
 <body>
   <h1>Chamada de Vídeo Exclusiva 💻✨</h1>
-  <p>Você escolhe o valor, seja generoso rsrs 😘</p>
+  <p>Você escolhe o valor, clique no botão, seja generoso rsrs 😘</p>
 
-  <div class="btn-group">
+  <div>
     <button class="btn">R$ 30,00</button>
     <button class="btn">R$ 50,00</button>
     <button class="btn">R$ 100,00</button>
   </div>
 
-  <div class="pix-box">💳 Chave PIX: <strong>86998083824</strong></div>
+  <div class="pix-box">💳 Chave PIX: <strong>86998083834</strong></div>
 
-  <a class="btn" href="https://wa.me/5586988134323?text=Ol%C3%A1%20gata%2C%20confira%20o%20meu%20comprovante%20PIX%2C%20quero%20receber%20os%20seus%20conte%C3%BAdos." target="_blank">
-    Enviar Comprovante
-  </a>
+  <a class="btn" href="#" onclick="confirmarPagamento()">Enviar Comprovante</a>
 
   <div class="confirm-msg">✅ Após confirmação você receberá a senha de acesso à chamada.</div>
+
+  <div id="contador">⏳ Sua chamada começa em <span id="tempo">60</span> segundos...</div>
+
+  <a id="btnChamada" class="btn" href="https://seu-link-de-video.com/modelo" target="_blank">Assistir Chamada</a>
+
+  <div class="aviso-horario">⚠️ As chamadas só serão realizadas entre 9h e 23h.</div>
+
+  <script>
+    function confirmarPagamento() {
+      // abre WhatsApp para envio do comprovante
+      window.open("https://wa.me/5586988134323?text=Ol%C3%A1%20gata%2C%20confira%20o%20meu%20comprovante%20PIX%2C%20quero%20receber%20os%20seus%20conte%C3%BAdos.", "_blank");
+
+      // verifica horário atual
+      const agora = new Date();
+      const hora = agora.getHours();
+
+      if (hora < 9 || hora >= 23) {
+        alert("⚠️ As chamadas só podem ser realizadas entre 9h e 23h. Tente novamente nesse horário.");
+        return;
+      }
+
+      // inicia contador regressivo de 60 segundos
+      document.getElementById("contador").style.display = "block";
+      let tempo = 60;
+      document.getElementById("tempo").textContent = tempo;
+
+      const intervalo = setInterval(() => {
+        tempo--;
+        document.getElementById("tempo").textContent = tempo;
+        if (tempo === 0) {
+          clearInterval(intervalo);
+          document.getElementById("contador").style.display = "none";
+          document.getElementById("btnChamada").style.display = "inline-block";
+        }
+      }, 1000);
+    }
+  </script>
 </body>
 </html>
-
 

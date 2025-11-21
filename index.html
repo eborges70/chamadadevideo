@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Chamada de Vídeo Exclusiva</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+    h1 { font-size: 2em; margin-bottom: 0.5em; }
+    p { font-size: 1.2em; margin-bottom: 1em; max-width: 500px; }
+    input {
+      padding: 10px;
+      font-size: 1em;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .btn {
+      background-color: #d81b60;
+      color: white;
+      padding: 15px 30px;
+      font-size: 1.1em;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      margin: 10px;
+      transition: background-color 0.3s ease;
+      animation: pulse 1.5s infinite;
+    }
+    .btn:hover { background-color: #ad1457; }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+      100% { transform: scale(1); }
+    }
+    .hidden { display: none; }
+    .loader {
+      border: 5px solid rgba(255,255,255,0.3);
+      border-top: 5px solid #d81b60;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin-top: 20px;
+      display: none;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .pix-box {
+      margin-top: 20px;
+      font-size: 1.1em;
+      font-weight: bold;
+      color: #444;
+    }
+    .confirm-msg {
+      margin-top: 15px;
+      font-size: 1em;
+      color: #222;
+    }
+  </style>
+</head>
+<body>
+  <h1>Chamada de Vídeo Exclusiva 💻✨</h1>
+  <p>Digite sua senha de acesso para continuar:</p>
+  
+  <input type="password" id="senha" placeholder="Digite a senha">
+  <button class="btn" onclick="validarSenha()">Entrar</button>
+  
+  <div id="conteudo" class="hidden">
+    <p>Você escolhe o valor, clique no botão, seja generoso rsrs 😅</p>
+    <button class="btn" onclick="abrirChamada(30)">R$ 30,00</button>
+    <button class="btn" onclick="abrirChamada(50)">R$ 50,00</button>
+    <button class="btn" onclick="abrirChamada(100)">R$ 100,00</button>
+    
+    <div class="pix-box">💳 Chave PIX: <strong>86998083834</strong></div>
+    
+    <a class="btn" href="https://wa.me/5586988134323?text=Ol%C3%A1%20gata%2C%20confira%20o%20meu%20comprovante%20PIX%2C%20quero%20receber%20os%20seus%20conte%C3%BAdos." target="_blank">
+      Enviar Comprovante
+    </a>
+    
+    <div class="confirm-msg">✅ Após confirmação você receberá a senha de acesso à chamada.</div>
+    
+    <div id="loader" class="loader"></div>
+  </div>
+
+  <script>
+    let senhaUsada = false; // controle de acesso único
+
+    function validarSenha() {
+      const senha = document.getElementById("senha").value;
+      if (senha === "4547" && !senhaUsada) {
+        document.getElementById("conteudo").classList.remove("hidden");
+      } else {
+        alert("Senha inválida ou já utilizada!");
+      }
+    }
+
+    function abrirChamada(valor) {
+      senhaUsada = true; // invalida senha após uso
+      document.getElementById("loader").style.display = "block"; // mostra loader
+      setTimeout(() => {
+        // 👉 Aqui você coloca o link fixo da chamada de vídeo da modelo
+        window.location.href = "https://seu-link-de-video.com/modelo";
+      }, 2000); // espera 2 segundos antes de redirecionar
+    }
+  </script>
+</body>
+</html>
+

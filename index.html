@@ -1,188 +1,186 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <title>Chamada de Vídeo Exclusiva</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <title>Área Exclusiva - Vídeo Chamada</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
+    :root {
+      --bg: #f8bbd0;
+      --card: #ffffff;
+      --text: #333333;
+      --primary: #d81b60;
+      --primary-dark: #ad1457;
+      --ok: #2e7d32;
+      --danger: #c62828;
+      --muted: #666666;
+    }
+    * { box-sizing: border-box; }
     body {
       margin: 0;
-      padding: 20px;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #fce4ec, #f8bbd0);
-      color: #333;
-      text-align: center;
+      padding: 16px;
+      font-family: Segoe UI, system-ui, -apple-system, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
     }
-
-    h1 {
-      font-size: 1.8em;
-      margin-bottom: 0.5em;
+    h1 { text-align: center; margin: 12px 0 18px; font-size: 1.8rem; }
+    .grid {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      gap: 16px;
     }
-
-    p {
-      font-size: 1.1em;
-      margin-bottom: 1em;
-      max-width: 500px;
-      margin-left: auto;
-      margin-right: auto;
+    .card {
+      background: var(--card);
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      padding: 18px;
     }
-
+    .card h2 { margin: 0 0 8px; font-size: 1.3rem; }
+    .row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
     .btn {
-      background-color: #d81b60;
-      color: white;
-      padding: 12px 24px;
-      font-size: 1em;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      text-decoration: none;
-      margin: 10px 5px;
-      transition: background-color 0.3s ease;
-      display: inline-block;
-    }
-
-    .btn:hover {
-      background-color: #ad1457;
-    }
-
-    .btn-group {
-      display: flex;
-      flex-wrap: wrap;
+      display: inline-flex;
+      align-items: center;
       justify-content: center;
-      gap: 10px;
-      margin-top: 20px;
+      gap: 8px;
+      border: none;
+      border-radius: 10px;
+      padding: 12px 18px;
+      font-size: 1rem;
+      cursor: pointer;
+      background: var(--primary);
+      color: #fff;
+      transition: background 0.2s ease;
     }
-
-    .pix-box {
-      margin-top: 30px;
-      font-size: 1.1em;
-      font-weight: bold;
-      color: #444;
+    .btn:hover { background: var(--primary-dark); }
+    .btn-ok { background: var(--ok); }
+    .btn-ok:hover { background: #1b5e20; }
+    .btn-danger { background: var(--danger); }
+    .btn-danger:hover { background: #8e1515; }
+    .btn-gray { background: #757575; }
+    .btn-gray:hover { background: #5e5e5e; }
+    .info { color: var(--muted); font-size: 0.95rem; }
+    .field {
+      width: 100%;
+      max-width: 360px;
+      padding: 10px 12px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
     }
-
-    .confirm-msg {
-      margin-top: 15px;
-      font-size: 1em;
-      color: #222;
+    .badge {
+      display: inline-block;
+      background: #f3f3f3;
+      border: 1px dashed #ccc;
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-weight: 600;
     }
-
-    #contador {
-      font-size: 1.3em;
-      margin-top: 20px;
-      display: none;
-    }
-
-    #btnChamada {
-      display: none;
-      margin-top: 20px;
-    }
-
-    #senhaBox {
-      display: none;
-      margin-top: 20px;
-    }
-
-    input {
-      padding: 10px;
-      font-size: 1em;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      margin-bottom: 10px;
-      width: 80%;
-      max-width: 300px;
-    }
-
-    .aviso-horario {
-      margin-top: 25px;
-      font-size: 1.1em;
+    .notice {
+      margin-top: 10px;
+      font-weight: 700;
       color: #b71c1c;
-      font-weight: bold;
     }
-
-    /* Responsividade */
-    @media (max-width: 480px) {
-      h1 { font-size: 1.5em; }
-      p { font-size: 1em; }
-      .btn { width: 100%; max-width: 300px; }
-      .btn-group { flex-direction: column; align-items: center; }
+    @media (max-width: 520px) {
+      .row { flex-direction: column; align-items: stretch; }
+      .btn { width: 100%; }
+      .field { max-width: 100%; }
     }
   </style>
 </head>
 <body>
-  <h1>Chamada de Vídeo Exclusiva 💻✨</h1>
-  <p>Você escolhe o valor, seja generoso rsrs 😘</p>
+  <h1>Área Exclusiva 💻✨</h1>
+  <div class="grid">
 
-  <div class="btn-group">
-    <button class="btn">R$ 30,00</button>
-    <button class="btn">R$ 50,00</button>
-    <button class="btn">R$ 100,00</button>
+    <!-- 1) Pagamento via PIX -->
+    <div class="card">
+      <h2>Vídeo Chamada</h2>
+      <p class="badge">Valor: R$ 30,00</p>
+      <p><strong>Chave PIX:</strong> <span id="pixKey">86998083824</span></p>
+      <div class="row">
+        <button class="btn" onclick="copiarPix()">Copiar chave PIX</button>
+        <a class="btn" target="_blank"
+           href="https://wa.me/5586988134323?text=Ol%C3%A1%20gata%2C%20confira%20o%20meu%20comprovante%20PIX%2C%20quero%20receber%20os%20seus%20conte%C3%BAdos.">📩 Enviar comprovante</a>
+      </div>
+      <p class="info">Após realizar o pagamento, envie o comprovante. Você receberá a senha de acesso em seguida.</p>
+      <p class="notice">⏰ Atendimento: 9h às 23h</p>
+    </div>
+
+    <!-- 2) Senha de acesso -->
+    <div class="card">
+      <h2>Senha de acesso</h2>
+      <p class="info">Digite a senha recebida após o envio do comprovante.</p>
+      <div class="row">
+        <input class="field" type="password" id="senhaInput" placeholder="Senha de acesso" />
+        <button class="btn btn-ok" onclick="acessarPorSenha()">Acessar Vídeo Chamada</button>
+        <button class="btn btn-gray" onclick="voltarTopo()">Voltar</button>
+      </div>
+    </div>
+
+    <!-- 3) Simulação de chamada -->
+    <div class="card">
+      <h2>Chamando...</h2>
+      <p class="info">“Você ligou na hora do banho, mas vou fazer uma surpresinha pra você 🤭”</p>
+      <div class="row">
+        <button class="btn btn-danger">❌ Cancelar</button>
+        <button class="btn btn-ok" onclick="iniciarVideo()">✅ Atender</button>
+      </div>
+    </div>
+
   </div>
-
-  <div class="pix-box">💳 Chave PIX: <strong>86998083834</strong></div>
-
-  <a class="btn" href="#" onclick="confirmarPagamento()">Enviar Comprovante</a>
-
-  <div class="confirm-msg">✅ Após confirmação você receberá a senha de acesso à chamada.</div>
-
-  <div id="contador">⏳ Sua chamada começa em <span id="tempo">30</span> segundos...</div>
-
-  <button id="btnChamada" class="btn" onclick="mostrarSenha()">Assistir Chamada</button>
-
-  <div id="senhaBox">
-    <p>Digite a senha recebida para acessar a chamada:</p>
-    <input type="password" id="senhaInput" placeholder="Senha de acesso">
-    <button class="btn" onclick="validarSenha()">Confirmar</button>
-  </div>
-
-  <div class="aviso-horario">⚠️ As chamadas só serão realizadas entre 9h e 23h.</div>
 
   <script>
-    let senhaUsada = false; // controle de acesso único
-    const senhaCorreta = "4547"; // exemplo de senha
+    // CONFIGURAÇÕES
+    const LINK_VIDEO = "https://seu-link-de-video.com/modelo"; // substitua pelo link real
+    const SENHA_CORRETA = "4547"; // exemplo – a senha é de acesso único
 
-    function confirmarPagamento() {
-      window.open("https://wa.me/5586988134323?text=Ol%C3%A1%20gata%2C%20confira%20o%20meu%20comprovante%20PIX%2C%20quero%20receber%20os%20seus%20conte%C3%BAdos.", "_blank");
+    let senhaUsada = false;
 
-      const agora = new Date();
-      const hora = agora.getHours();
-      if (hora < 9 || hora >= 23) {
-        alert("⚠️ As chamadas só podem ser realizadas das 9h às 23h. Tente novamente nesse horário.");
+    function copiarPix() {
+      const key = document.getElementById("pixKey").textContent.trim();
+      navigator.clipboard.writeText(key).then(() => {
+        alert("Chave PIX copiada!");
+      }).catch(() => {
+        alert("Não foi possível copiar. Copie manualmente: " + key);
+      });
+    }
+
+    function dentroDoHorario() {
+      const hora = new Date().getHours();
+      return hora >= 9 && hora < 23;
+    }
+
+    // Botão verde: vai direto para o vídeo (sem senha), pois comprovante já foi enviado
+    function iniciarVideo() {
+      if (!dentroDoHorario()) {
+        alert("⚠️ Chamadas somente entre 9h e 23h.");
         return;
       }
-
-      document.getElementById("contador").style.display = "block";
-      let tempo = 60;
-      document.getElementById("tempo").textContent = tempo;
-
-      const intervalo = setInterval(() => {
-        tempo--;
-        document.getElementById("tempo").textContent = tempo;
-        if (tempo === 0) {
-          clearInterval(intervalo);
-          document.getElementById("contador").style.display = "none";
-          document.getElementById("btnChamada").style.display = "inline-block";
-        }
-      }, 1000);
+      window.location.href = LINK_VIDEO;
     }
 
-    function mostrarSenha() {
-      document.getElementById("senhaBox").style.display = "block";
-    }
-
-    function validarSenha() {
-      const senha = document.getElementById("senhaInput").value;
-      if (senha === senhaCorreta && !senhaUsada) {
-        senhaUsada = true;
-        alert("✅ Senha correta! Redirecionando para a chamada...");
-        window.location.href = "https://s3-cf.zapsafe.work/eborges/video02.mp4";
-      } else {
-        alert("❌ Senha inválida ou já utilizada!");
+    // Acesso por senha (revalidação ou alternativa)
+    function acessarPorSenha() {
+      if (!dentroDoHorario()) {
+        alert("⚠️ Chamadas somente entre 9h e 23h.");
+        return;
       }
+      const senha = document.getElementById("senhaInput").value.trim();
+      if (senha === SENHA_CORRETA && !senhaUsada) {
+        senhaUsada = true;
+        alert("✅ Senha correta! Redirecionando...");
+        window.location.href = LINK_VIDEO;
+      } else if (senhaUsada) {
+        alert("❌ Esta senha já foi utilizada. Solicite uma nova.");
+      } else {
+        alert("❌ Senha inválida. Verifique e tente novamente.");
+      }
+    }
+
+    function voltarTopo() {
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   </script>
 </body>
 </html>
-
-
-
 

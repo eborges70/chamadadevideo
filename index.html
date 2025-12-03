@@ -2,33 +2,106 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Vídeo Chamada - Pagamento</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fale com Ane</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    body { font-family: Segoe UI, sans-serif; background:#f8bbd0; text-align:center; padding:30px; }
-    .card { background:#fff; padding:20px; border-radius:12px; max-width:400px; margin:auto; box-shadow:0 4px 12px rgba(0,0,0,0.1); }
-    .btn { display:block; margin:10px auto; padding:12px; border:none; border-radius:8px; background:#d81b60; color:#fff; font-size:1em; cursor:pointer; }
-    .btn:hover { background:#ad1457; }
-    .notice { margin-top:15px; font-weight:bold; color:#b71c1c; }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: url('https://i.pinimg.com/originals/75/cc/47/75cc4759341a2e8a78d6ea4e11ba28bf.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2em;
+      margin-bottom: 0.5em;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+    }
+
+    p {
+      font-size: 1.2em;
+      margin-bottom: 2em;
+      max-width: 400px;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+    }
+
+    .btn-whatsapp {
+      background-color: #25D366;
+      color: white;
+      padding: 15px 30px;
+      font-size: 1.1em;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+      animation: pulse 1.5s infinite;
+    }
+
+    .btn-whatsapp:hover {
+      background-color: #1ebe5d;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+      100% { transform: scale(1); }
+    }
+
+    /* Loader */
+    .loader {
+      border: 5px solid rgba(255,255,255,0.3);
+      border-top: 5px solid #25D366;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin-top: 20px;
+      display: none;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
   </style>
 </head>
 <body>
-  <div class="card">
-    <h2>Vídeo Chamada</h2>
-    <p>Valor: <strong>R$ 30,00</strong></p>
-    <p>Chave PIX: <strong id="pixKey">86998083824</strong></p>
-    <button class="btn" onclick="copiarPix()">Copiar Chave PIX</button>
-    <a class="btn" href="https://wa.me/5586988134323?text=Enviei%20o%20comprovante" target="_blank">📩 Enviar Comprovante</a>
-    <p>Após o pagamento, você receberá a senha de acesso.</p>
-    <div class="notice">⏰ Atendimento: 9h às 23h</div>
-    <a class="btn" href="pagina2.html">Já enviei o comprovante</a>
-  </div>
+  <h1>Oiee! Que bom ter você aqui 💬</h1>
+  <p>Tá pronto pra curtir algo exclusivo amor 💞. Clica no botão abaixo para acessar!</p>
+  
+  <a id="whatsappLink" class="btn-whatsapp" href="#">Acessar Agora</a>
+  <div id="loader" class="loader"></div>
+
   <script>
-    function copiarPix() {
-      navigator.clipboard.writeText(document.getElementById("pixKey").textContent);
-      alert("Chave PIX copiada!");
-    }
+    
+    // Botão com efeito de carregando antes de abrir WhatsApp
+    const whatsappLink = document.getElementById("whatsappLink");
+    const loader = document.getElementById("loader");
+
+    whatsappLink.addEventListener("click", function(event) {
+      event.preventDefault(); // evita abrir imediatamente
+      loader.style.display = "block"; // mostra o loader
+
+      setTimeout(() => {
+        window.location.href = "https://intestinoregulado.my.canva.site/anedelicia";
+      }, 2000); // espera 2 segundos antes de redirecionar
+    });
   </script>
 </body>
 </html>
+
+
+
+
+
+
 

@@ -1,120 +1,105 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Fale com Especialista</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Entrega do eBook – Renascer a Dois</title>
+
   <style>
     body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: url(https://is.gd/naturalfenixgrego) no-repeat center center fixed;
-      background-size: cover;
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
+      font-family: Arial, sans-serif;
+      background: #fff0f5;
+      color: #333;
       text-align: center;
+      padding: 30px;
     }
-
     h1 {
-      font-size: 2em;
-      margin-bottom: 0.5em;
-      text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+      color: #d63384;
     }
-
-    p {
-      font-size: 1.2em;
-      margin-bottom: 2em;
-      max-width: 400px;
-      text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+    .box {
+      background: #ffe4e1;
+      padding: 25px;
+      border-radius: 12px;
+      margin: 20px auto;
+      width: 320px;
     }
-
-    .btn-whatsapp {
-      background-color: #25D366;
+    .cta {
+      background: #d63384;
       color: white;
-      padding: 15px 30px;
-      font-size: 1.1em;
+      padding: 15px;
       border: none;
       border-radius: 8px;
+      font-size: 16px;
       cursor: pointer;
       text-decoration: none;
-      transition: background-color 0.3s ease;
-      animation: pulse 1.5s infinite;
+      display: inline-block;
+      margin-top: 15px;
     }
-
-    .btn-whatsapp:hover {
-      background-color: #1ebe5d;
+    .cta:hover {
+      background: #c2185b;
     }
-
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.08); }
-      100% { transform: scale(1); }
-    }
-
-    /* Loader */
-    .loader {
-      border: 5px solid rgba(255,255,255,0.3);
-      border-top: 5px solid #25D366;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      animation: spin 1s linear infinite;
-      margin-top: 20px;
-      display: none;
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+    .footer {
+      margin-top: 40px;
+      font-size: 14px;
+      color: #777;
     }
   </style>
-</head>
-<body>
-  <h1>CONQUISTE QUALQUER MULHER COM APENAS 12 GOTAS ANTES DA HORA H</h1>
-  <p>CONSULTA GRÁTIS 👇</p>
-  
-  <a id="whatsappLink" class="btn-whatsapp" href="#">WHATSAPP</a>
-  <div id="loader" class="loader"></div>
 
+  <!-- Meta Pixel Code -->
   <script>
-    
-    // Botão com efeito de carregando antes de abrir WhatsApp
-    const whatsappLink = document.getElementById("whatsappLink");
-    const loader = document.getElementById("loader");
+    !function(f,b,e,v,n,t,s){
+      if(f.fbq)return;n=f.fbq=function(){
+        n.callMethod ? n.callMethod.apply(n,arguments) : n.queue.push(arguments)
+      };
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)
+    }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
 
-    whatsappLink.addEventListener("click", function(event) {
-      event.preventDefault(); // evita abrir imediatamente
-      loader.style.display = "block"; // mostra o loader
+    fbq('init', '382101007899298');
 
-      setTimeout(() => {
-        window.location.href = "https://webhook-cf.zapsafe.work/webhook/eborges";
-      }, 2000); // espera 2 segundos antes de redirecionar
+    // Purchase dispara SOMENTE aqui
+    fbq('track', 'Purchase', {
+      value: 19.90,
+      currency: 'BRL',
+      content_name: 'Renascer a Dois – eBook',
+      content_ids: ['ebook-renascer-a-dois'],
+      content_type: 'product'
     });
   </script>
+
+  <noscript>
+    <img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=382101007899298&ev=Purchase&noscript=1"/>
+  </noscript>
+  <!-- End Meta Pixel Code -->
+
+</head>
+<body>
+
+  <h1>Seu eBook está pronto para download 💕</h1>
+
+  <p>Obrigada pela confiança!  
+  Você agora tem acesso ao eBook <strong>“Renascer a Dois”</strong>, criado com muito carinho para ajudar mulheres a reconstruírem a conexão, o amor e a leveza no relacionamento.</p>
+
+  <div class="box">
+    <h2>📘 Baixar eBook</h2>
+    <p>Clique no botão abaixo para fazer o download imediato:</p>
+
+    <a class="cta"
+       href="https://drive.google.com/file/d/1QbeEIQWw8dnbHhK2nrQKEUrf1Kgy5L3Q/view?usp=drive_link"
+       target="_blank">
+       Baixar “Renascer a Dois”
+    </a>
+  </div>
+
+  <div class="footer">
+    <p>Se tiver qualquer dúvida ou quiser orientação personalizada,  
+    é só me chamar no WhatsApp 💗</p>
+    <p>Com carinho, Ane Carvalho</p>
+  </div>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
